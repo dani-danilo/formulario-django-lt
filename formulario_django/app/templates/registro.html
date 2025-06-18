@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro</title>
+    <style>
+        .errorlist {
+            color: red;
+            list-style-type: none;
+            padding-left: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario de Registro</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            {{ form.usuario.label_tag }}<br>
+            {{ form.usuario }}
+            {% if form.usuario.errors %}
+                <ul class="errorlist">
+                    {% for error in form.usuario.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </p>
+        <p>
+            {{ form.contraseña.label_tag }}<br>
+            {{ form.contraseña }}
+            {% if form.contraseña.errors %}
+                <ul class="errorlist">
+                    {% for error in form.contraseña.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </p>
+        <button type="submit">Registrarse</button>
+    </form>
+</body>
+</html>
